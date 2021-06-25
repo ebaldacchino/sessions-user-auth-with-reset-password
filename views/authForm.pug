@@ -1,0 +1,50 @@
+extends ./components/layout/index.pug
+
+
+block content
+    - const nameError = errors.find(error => error.param === 'name');
+    - const emailError = errors.find(error => error.param === 'email');
+    - const passwordError = errors.find(error => error.param === 'password');
+    main.flex.justify-center
+        .w-full.max-w-xs
+            form.bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4(method='POST' action=action)  
+                if resetPage
+                    .my-4 
+                        h1.text-2xl.mb-2 Create New Password
+                if forgotPage
+                    .my-4 
+                        h1.text-2xl.mb-2 Forgot Your Password?
+                        p Don't worry, happens to the best of us.
+                if registerPage
+                    .mb-4
+                        label.form-label(for="name") Full Name 
+                        input(type="text"
+                         id="name"
+                         name="name" class=`${nameError ? 'error' : ''}`  placeholder="John Doe" value=values.name ? values.name : "") 
+                        if (nameError)
+                            small.text-red-500.float-right= nameError &&nameError.msg
+                if !resetPage
+                    .mb-4
+                        label.form-label(for="email") Email 
+                        input(type="email"
+                        id="email"
+                        name="email" class=`${emailError ? 'error' : ''}`  placeholder="example@example.com" value=values.email ? values.email : "") 
+                        if (emailError)
+                                small.text-red-500.float-right= emailError.msg
+                if !forgotPage
+                    .mb-2
+                        label.form-label(for="password") Password 
+                        input(type="password", name="password" id='password' class=`${passwordError ? 'error' : ''}`  placeholder="******************" value=values.password ? values.password : "")
+                        if (passwordError)
+                                small.text-red-500.float-right= passwordError.msg
+                    label.flex.items-center.mb-4.w-full
+                        input(type="checkbox" id="unmask" class="mr-2")
+                        span.text-sm.text-gray-700 Show password
+                if loginPage
+                    a.form-link.mb-7(href="/forgot-password") Forgot your password?
+                button.btn-primary.w-full.mb-4(type="submit")= buttonText
+                .w-full.text-center 
+                    if loginPage    
+                        a.form-link(href='/register') Switch to Register
+                    if registerPage 
+                        a.form-link(href='/login') Switch to Login

@@ -1,0 +1,36 @@
+{
+	"name": "sole-trader-booking-system",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon -r dotenv/config app.js",
+		"build:css": "postcss public/styles/tailwind.css -o public/styles/styles.css"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@fortawesome/fontawesome-free": "^5.15.3",
+		"autoprefixer": "^10.2.6",
+		"bcryptjs": "^2.4.3",
+		"connect-mongo": "^4.4.1",
+		"dataloader": "^2.0.0",
+		"express": "^4.17.1",
+		"express-session": "^1.17.2",
+		"express-validator": "^6.12.0",
+		"mongoose": "^5.12.10",
+		"nodemailer": "^6.6.2",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0",
+		"postcss": "^8.3.5",
+		"postcss-cli": "^8.3.1",
+		"pug": "^3.0.2",
+		"tailwindcss": "^2.2.2"
+	},
+	"devDependencies": {
+		"dotenv": "^10.0.0",
+		"nodemon": "^2.0.7"
+	}
+}

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:not([type='checkbox']) {
+	@apply shadow appearance-none border rounded w-full py-2 px-3  border-gray-300 text-gray-700 leading-tight focus:outline-none;
+}
+.form-label {
+	@apply block text-gray-700 text-sm font-bold mb-2;
+}
+.btn-primary {
+	@apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none;
+}
+.form-link {
+	@apply block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800;
+}
+.inline-link {
+	@apply inline align-baseline font-bold text-blue-500 hover:text-blue-800;
+}
+input:not([type="checkbox"]).error {
+	@apply border-red-500 text-red-500;
+}

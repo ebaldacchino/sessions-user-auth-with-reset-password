@@ -1,0 +1,23 @@
+extends ./components/layout/index.pug
+
+block content
+    main.flex.justify-center
+        .w-full.max-w-xs
+            section.bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.text-center 
+                .flex.justify-center.text-5xl.text-blue-500
+                    .bg-gray-100.p-4.rounded.mb-6
+                        if emailSuccessPage
+                            i.fas.fa-envelope-open-text
+                        if passwordUpdatedPage
+                            i.fas.fa-check-square
+                if emailSuccessPage
+                    .mb-6 
+                        h1.text-2xl.mb-2.font-medium Check your email
+                        p We have sent password recover instructions to your email
+                    small Did not receive the email? Check your spam folder, or 
+                        a.inline-link(href='/login') try another email address
+                if passwordUpdatedPage
+                    .mb-6 
+                        h1.text-2xl.mb-2.font-medium Password Updated
+                        a.form-link(href="login") Proceed to login
+                    
