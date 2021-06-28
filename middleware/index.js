@@ -1,4 +1,9 @@
-const { isAuth, isAdmin, isLoggedInAlready } = require('./is-auth');
+const {
+	isAuthenticated,
+	isAdmin,
+	forwardAuthenticated,
+	isVerified,
+} = require('./is-auth');
 const session = require('./session');
 const {
 	validateForgotPasswordForm,
@@ -7,13 +12,17 @@ const {
 	validateResetPasswordForm,
 } = require('./form-validation');
 
+const validateTokenQuery = require('./validate-token');
+
 module.exports = {
-	isAuth,
+	isAuthenticated,
 	isAdmin,
-	isLoggedInAlready,
+	forwardAuthenticated,
+	isVerified,
 	session,
 	validateRegistrationForm,
 	validateLoginForm,
 	validateForgotPasswordForm,
 	validateResetPasswordForm,
+	validateTokenQuery,
 };

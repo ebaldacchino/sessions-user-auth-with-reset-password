@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const {
-	isLoggedInAlready,
+	forwardAuthenticated,
 	validateRegistrationForm,
 } = require('../../middleware');
 
@@ -14,12 +14,13 @@ const {
 
 router
 	.route('/')
-	.get(isLoggedInAlready, getRegisterPage)
+	.get(forwardAuthenticated, getRegisterPage)
 	.post(
+		forwardAuthenticated,
 		validateRegistrationForm,
 		createUser,
 		passport.authenticate('local', {
-			successRedirect: '/',
+			successRedirect: '/verify',
 		})
 	);
 

@@ -1,0 +1,37 @@
+extends ./components/layout/index.pug
+
+block content
+    main.flex.justify-center
+        .w-full.max-w-xs
+            section.bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4.text-center 
+                .flex.justify-center.text-5xl.text-blue-500 
+                    if verifyPage
+                        i.fas.fa-envelope-open-text.mb-4 
+                    if passwordUpdatedPage || verified
+                        i.fas.fa-check-square.mb-4
+                    if invalidToken || expiredToken
+                        i.fas.fa-exclamation-triangle.mb-4
+                if verifyPage 
+                    h1.text-2xl.mb-4.font-medium Check your email
+                    p.mb-4 We just sent you a verification email for your protection 
+                    small Did not receive the email? Check your spam folder, or 
+                        a.inline-link(href=isLoggedIn ? "/logout" : "/login") try another email address 
+                if passwordUpdatedPage
+                    .mb-4 
+                        h1.text-2xl.mb-2.font-medium Password Updated 
+                        p Your password has been successfully updated!
+                if verified
+                    .mb-4 
+                        h1.text-2xl.mb-2.font-medium Verified 
+                        p Your account is now free to use!
+                if invalidToken 
+                    .mb-4 
+                        h1.text-2xl.mb-4.font-medium Invalid token
+                        p Unfortunately, this token doesn't exist. If you've received multiple emails from us, please use the latest one 
+                if expiredToken
+                    .mb-4 
+                        h1.text-2xl.mb-4.font-medium Check your email
+                        p Unfortunately, this token is expired. We just sent you another email
+                if !verifyPage
+                    a.btn-primary.w-full(href=isLoggedIn ? "/" : "/login" type="button")= `Proceed to ${isLoggedIn ? "home" : "login"}`
+                    

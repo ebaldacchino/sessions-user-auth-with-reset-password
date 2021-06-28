@@ -31941,8 +31941,10 @@ input:not([type='checkbox']):focus {
 }
 
 .form-label {
-  margin-bottom: 0.5rem;
-  display: block;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 700;
@@ -32004,9 +32006,33 @@ input:not([type='checkbox']):focus {
   color: rgba(30, 64, 175, var(--tw-text-opacity));
 }
 
-input:not([type="checkbox"]).error {
+input:not([type='checkbox']).error {
   --tw-border-opacity: 1;
   border-color: rgba(239, 68, 68, var(--tw-border-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(239, 68, 68, var(--tw-text-opacity));
+}
+
+.tooltip {
+  position: absolute;
+  top: 1rem;
+  right: 0.75rem;
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+small.form-error {
+  float: right;
+  margin-bottom: 0.25rem;
   --tw-text-opacity: 1;
   color: rgba(239, 68, 68, var(--tw-text-opacity));
 }

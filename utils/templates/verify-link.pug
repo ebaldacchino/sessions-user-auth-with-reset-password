@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body
+        if verifyAccount
+            h2 Please click on the link below to activate your account
+        if resetPassword
+            h2 Please click on the link below to reset your password
+
+        a(href=link)= link
+
+        p
+            strong NOTE: 
+            | The above activation link expires in 15 minutes.

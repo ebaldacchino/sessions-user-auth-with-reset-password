@@ -1,6 +1,6 @@
 const siteTitle = 'Site title';
 const User = require('../../models/user');
-const bcrypt = require('bcryptjs');
+const { createToken, createPassword } = require('../merge');
 
 const getRegisterPage = (req, res) => {
 	return res.render('authForm', {
@@ -28,23 +28,22 @@ const createUser = async (req, res, next) => {
 			req.errors = [
 				{
 					param: 'email',
-					msg: 'User exists already',
+					msg: 'Email is already taken',
 				},
 			];
 
 			return getRegisterPage(req, res);
-		}
-
-		const salt = bcrypt.genSaltSync(10);
-		const password = bcrypt.hashSync(req.body.password, salt);
+		} 
 
 		const user = new User({
 			name,
 			email,
-			password,
+			password: createPassword(req.body.password),
 		});
 
 		const isCreated = await user.save();
+
+		await createToken(user._id, req.headers.host);
 
 		if (isCreated) {
 			next();

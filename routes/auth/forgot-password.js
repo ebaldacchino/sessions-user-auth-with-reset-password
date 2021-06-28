@@ -5,14 +5,13 @@ const {
 	forgotPassword,
 	getForgotPasswordPage,
 } = require('../../controllers/auth/forgot-password');
-const {
-	isLoggedInAlready,
+const { 
 	validateForgotPasswordForm,
 } = require('../../middleware');
 
 router
 	.route('/')
-	.get(isLoggedInAlready, getForgotPasswordPage)
+	.get(getForgotPasswordPage)
 	.post(validateForgotPasswordForm, forgotPassword);
 
 module.exports = router;

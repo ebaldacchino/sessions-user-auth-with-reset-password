@@ -7,13 +7,14 @@ const {
 } = require('../../controllers/auth/reset-password');
 
 const {
-	isLoggedInAlready,
 	validateResetPasswordForm,
+	validateTokenQuery,
+	forwardAuthenticated,
 } = require('../../middleware');
 
 router
 	.route('/')
-	.get(isLoggedInAlready, getResetPasswordPage)
-	.post(validateResetPasswordForm, resetPassword);
+	.get(forwardAuthenticated, validateTokenQuery, getResetPasswordPage)
+	.post(forwardAuthenticated, validateTokenQuery, validateResetPasswordForm, resetPassword);
 
 module.exports = router;

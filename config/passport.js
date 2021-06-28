@@ -11,16 +11,24 @@ const customFields = {
 const verifylocalStrategyCallback = async (email, password, done) => {
 	try {
 		const user = await User.findOne({ email });
-		if (!user) {
-			return done(null, false, {
+
+		const incorrectEmail = () =>
+			done(null, false, {
 				param: 'email',
 				msg: 'Email is incorrect',
 			});
+
+		if (!user) {
+			return incorrectEmail();
 		}
 
-		const isValid = await bcrypt.compareSync(password, user.password);
+		if (user.deleted) {
+			return incorrectEmail();
+		}
+		
+		const correctPassword = await bcrypt.compareSync(password, user.password);
 
-		if (isValid) {
+		if (correctPassword) {
 			return done(null, user);
 		}
 		return done(null, false, {
